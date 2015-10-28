@@ -19,4 +19,9 @@ angular.module('books').run(['Menus', function (Menus) {
     title: 'Upload Books',
     state: 'books.create'
   });
+
+  Menus.addSubMenuItem('topbar', 'books', {
+    title: 'Play Sample',
+    state: 'books.view'
+  });
 }]);

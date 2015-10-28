@@ -1,3 +1,11 @@
-<div>
-	List books
-</div>
+<section ng-controller="BooksController" ng-init="find()">
+  <div class="page-header">
+    <h1>Books</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="book in books" href="/books/{{book.bookId}}" class="list-group-item"  ng-click="openBook(book)">
+    	{{book.title}}
+    </a>
+  </div>
+  
+</section>

@@ -5,4 +5,4 @@ angular.module('books').factory('Book', ['$resource',
     return $resource('api/books/:bookId', {
       bookId: '@_id'
     });
-}]);
+  }]);

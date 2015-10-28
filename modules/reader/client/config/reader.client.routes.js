@@ -18,6 +18,6 @@ angular.module('books').config(['$stateProvider', function ($stateProvider) {
     })
     .state('books.view', {
       url: '/:bookId',
-      templateUrl: 'modules/reader/client/views/view-book.client.view.html'
+      templateUrl: 'modules/reader/client/views/player.client.view.html'
     });
 }]);
