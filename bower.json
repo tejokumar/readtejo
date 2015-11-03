@@ -17,7 +17,8 @@
     "owasp-password-strength-test": "~1.3.0",
     "angular-audio": "",
     "ng-file-upload": "",
-    "lodash":""
+    "lodash":"",
+    "howler": "1.1.28"
   },
   "resolutions": {
     "angular": "~1.3"

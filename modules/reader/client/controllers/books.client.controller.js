@@ -1,17 +1,46 @@
 'use strict';
 
-angular.module('books').controller('BooksController', ['$scope', 'ReaderService', 'Book', 'ReaderProfile', '$stateParams', function ($scope, ReaderService, Book, ReaderProfile, $stateParams) {
+angular.module('books').controller('BooksController', ['$scope', '$window', 'ReaderService', 'Book', 'ReaderProfile', '$stateParams', function ($scope, $window, ReaderService, Book, ReaderProfile, $stateParams) {
   $scope.uploadFile = uploadFile;
   $scope.createBook = createBook;
   $scope.find = find;
   $scope.openBook = openBook;
-  
+  $scope.openPlayer = openPlayer;
+  $scope.playHowl = playHowl;
+  var sound, playing = false;
+
   $scope.$on('$destroy', function () {
     var player = document.getElementById('player');
     player.removeEventListener('pause', onPause);
   });
+  init();
+  function init() {
+    sound = new $window.Howl({
+      urls: ['/api/books/read/DUMMY'],
+      preload: true,
+      format: 'ogg'
+    });
+    sound.load();
+    sound.on('load', function () {
+      console.log('Loaded');
+    });
+    sound.on('loaderror', function (id, error) {
+      console.log(error);
+    });
+  }
+  function playHowl() {
+    if (playing) {
+      sound.pause();
+    } else {
+      sound.play();
+    }
+    playing = !playing;
+  }
+  function openPlayer() {
+    $window.open('//facebook.com');
+  }
   function openBook() {
-    $scope.audioSource = '/api/books/read/' + $stateParams.bookId;
+    //$scope.audioSource = '/api/books/read/' + $stateParams.bookId;
     var player = document.getElementById('player');
     player.addEventListener('pause', onPause);
     ReaderProfile.get({
