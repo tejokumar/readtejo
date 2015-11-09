@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('books').factory('ReaderService', ['Upload', '$q',
-  function (Upload, $q) {
+angular.module('books').factory('ReaderService', ['Upload', '$q', 'ReaderProfile',
+  function (Upload, $q, ReaderProfile) {
     return {
-      uploadFile: uploadFile
+      uploadFile: uploadFile,
+      getUserBookProfile: getUserBookProfile
     };
 
     function uploadFile(audioFile, bookId) {
@@ -15,6 +16,16 @@ angular.module('books').factory('ReaderService', ['Upload', '$q',
         defer.resolve();
       }).catch(function (err) {
         defer.reject(err);
+      });
+      return defer.promise;
+    }
+
+    function getUserBookProfile(bookId) {
+      var defer = $q.defer();
+      ReaderProfile.get({
+        audioId: bookId
+      }, function (bookProfile) {
+        defer.resolve(bookProfile);
       });
       return defer.promise;
     }
