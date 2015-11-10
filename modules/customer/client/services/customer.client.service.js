@@ -17,8 +17,12 @@ angular.module('customer').factory('CustomerService', ['$resource', '$q',
       });
       return defer.promise;
     }
+    function getApplications() {
+      return ApplicationRsrc.query().$promise;
+    }
     return {
-      createApplication: createApplication
+      createApplication: createApplication,
+      getApplications: getApplications
     };
   }
 ]);

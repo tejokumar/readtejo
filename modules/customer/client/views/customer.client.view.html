@@ -1,13 +1,27 @@
 <section ng-controller="CustomerController">
-  <div class="form-group">
-    <label for="name">Name of your Application</label>
-    <input type="text" class="form-control" id="name" ng-model="name">
-  </div>
-  <div class="form-group">
-    <label for="description">Description:</label>
-    <textarea rows="5" class="form-control" id="description" ng-model="description"></textarea>
-  </div>
   <div>
-  	<button type="button" class="btn btn-primary" ng-click="createApplication()">Register</button>
+    <table class="table table-responsive">
+      <tr>
+        <th>App Name</th>
+        <th>Secret Key</th>
+      </tr>
+      <tr ng-repeat="application in applications">
+        <td>{{application.name}}</td>
+        <td>{{application.secretKey}}</td>
+      </tr>
+    </table>
+  </div>
+  <div ng-hide="applications.length > 0">
+    <div class="form-group">
+      <label for="name">Name of your Application</label>
+      <input type="text" class="form-control" id="name" ng-model="name">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea rows="5" class="form-control" id="description" ng-model="description"></textarea>
+    </div>
+    <div>
+    	<button type="button" class="btn btn-primary" ng-click="createApplication()">Register</button>
+    </div>
   </div>
 </section>
