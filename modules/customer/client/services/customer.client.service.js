@@ -2,9 +2,10 @@
 
 angular.module('customer').factory('CustomerService', ['$resource', '$q',
   function($resource, $q) {
-    var ApplicationRsrc;
+    var ApplicationRsrc, secretKey;
     function init() {
       ApplicationRsrc = $resource('api/customer/application');
+      loadSecretKey();
     }
     init();
     function createApplication(application) {
@@ -20,9 +21,28 @@ angular.module('customer').factory('CustomerService', ['$resource', '$q',
     function getApplications() {
       return ApplicationRsrc.query().$promise;
     }
+    function loadSecretKey() {
+      if (secretKey) {
+        return $q.when(secretKey);
+      }
+      return getApplications()
+        .then(function(applications){
+          if (applications && applications.length > 0) {
+            secretKey = applications[0].secretKey;
+            return applications[0].secretKey;
+          } else {
+            return undefined;
+          }
+        });
+    }
+    function getSecretKey() {
+      return secretKey;
+    }
     return {
       createApplication: createApplication,
-      getApplications: getApplications
+      getApplications: getApplications,
+      getSecretKey: getSecretKey,
+      loadSecretKey: loadSecretKey
     };
   }
 ]);

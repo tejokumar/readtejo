@@ -2,6 +2,7 @@
 
 exports.createApplication = createApplication;
 exports.getApplications = getApplications;
+exports.getApplicationForKey = getApplicationForKey;
 
 var Q = require('Q'),
   _ = require('lodash'),
@@ -22,7 +23,17 @@ function createApplication(appObject) {
   });
   return defer.promise;
 }
-
+function getApplicationForKey(key) {
+  var defer = Q.defer();
+  Application.findOne({ secretKey:key }).exec(function(err, application){
+    if (err) {
+      defer.reject(err);
+    } else {
+      defer.resolve(application);
+    }
+  });
+  return defer.promise; 
+}
 function getApplications(userId) {
   var defer = Q.defer();
   Application.find({ createdBy:userId }).exec(function(err, applications){
