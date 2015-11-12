@@ -1,0 +1,24 @@
+<section>
+  <div class="page-header">
+    <h1>Books</h1>
+  </div>
+  <table class="table table-responsive">
+  	<tr>
+  		<th>Title</th>
+  		<th>Summary</th>
+  		<th>Author</th>
+  		<th>Category</th>
+  		<th>Audio Size/Duration</th>
+  		<th></th>
+  	</tr>
+  	<tr ng-repeat="book in booksCtrl.books">
+  		<td>{{book.title}}</td>
+  		<td>{{book.summary}}</td>
+  		<td>{{book.author}}</td>
+  		<td>{{book.category}}</td>
+  		<td>{{book.size}} / {{book.duration}}</td>
+  		<td><a ui-sref="player.play({ bookId: book._id })">Play</a></td>
+  	</tr>
+  </table>
+  
+</section>

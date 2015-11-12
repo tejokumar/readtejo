@@ -1,0 +1,30 @@
+<section>
+  <div ng-hide="booksCtrl.hasSecretKey === true">
+    There is no secret key. <a ui-sref="customer">Create secret key </a>before creating books.
+  </div>
+  <div ng-hide="booksCtrl.hasSecretKey !== true">
+  	<div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" ng-model="booksCtrl.newBook.title">
+      </div>
+      <div class="form-group">
+        <label for="summary">Summary:</label>
+        <textarea rows="5" class="form-control" id="summary" ng-model="booksCtrl.newBook.summary"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="author">Author:</label>
+        <input type="text" class="form-control" id="author" ng-model="booksCtrl.newBook.author">
+      </div>
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" class="form-control" id="category" ng-model="booksCtrl.newBook.category">
+      </div>
+      <div class="form-group">
+        <label for="audioFile">File:</label>
+        <div class="button" ngf-select ng-model="booksCtrl.newBook.audioFile" name="audioFile" id="audioFile" accept="audio/ogg">Select</div>{{audioFile.originalname}}
+      </div>
+      <div>
+      	<button type="button" class="btn btn-primary" ng-click="booksCtrl.createBook()">Create!</button>
+      </div>
+    </div>
+</section>
