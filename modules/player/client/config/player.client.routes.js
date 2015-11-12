@@ -10,6 +10,13 @@ angular.module('player').config(['$stateProvider', function ($stateProvider) {
     })
     .state('player.play', {
       url: '/:bookId',
-      templateUrl: 'modules/player/client/views/player.client.view.html'
+      templateUrl: 'modules/player/client/views/player.client.view.html',
+      resolve: {
+        secretKey: function(CustomerService) {
+          return CustomerService.loadSecretKey();
+        }
+      },
+      controller: 'PlayerController',
+      controllerAs: 'playerCtrl'
     });
 }]);

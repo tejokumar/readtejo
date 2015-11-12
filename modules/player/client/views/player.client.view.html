@@ -1,10 +1,37 @@
-<section class="container" ng-controller="PlayerController" ng-init="openBook()">
-	<div class="container">
-		<div class="row">
-			<a class="btn" ng-click="playHowl()">
-				<img ng-src="modules/reader/client/img/play64x64.png">
-				</img>
-			</a>
+<section class="container">
+	<div class="row">
+     <a ui-sref="books.list">Back to List</a>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<label>Title</label>
+		</div>
+		<div class="col-sm-8">
+			{{playerCtrl.book.title}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<label>Summary</label>
+		</div>
+		<div class="col-sm-8">
+			{{playerCtrl.book.summary}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<label>Author</label>
+		</div>
+		<div class="col-sm-8">
+			{{playerCtrl.book.author}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<label>Category</label>
+		</div>
+		<div class="col-sm-8">
+			{{playerCtrl.book.category}}
 		</div>
 	</div>
 </section>

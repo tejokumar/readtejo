@@ -1,29 +1,17 @@
 'use strict';
 
-angular.module('player').controller('PlayerController', ['$scope', '$stateParams', 'ReaderService', 'PlayerService', function($scope, $stateParams, ReaderService, PlayerService) {
-  $scope.init = init;
-  $scope.play = play;
-
-  var playerProfile;
-  var sound, playing = false;
+angular.module('player').controller('PlayerController', ['$stateParams', 'BooksService', 
+  function($stateParams, BooksService) {
+    var vm = this;
+    vm.book = {};
   
-  function init() {
-    playerProfile = undefined;
-    ReaderService.getUserBookProfile($stateParams.bookId)
-      .then(function (profile) {
-        if (profile) {
-          playerProfile = profile;
-        }
-      });
-    sound = PlayerService.createPlayer($stateParams.bookId);
-  }
+    init();
 
-  function play() {
-    if (playing) {
-      sound.pause();
-    } else {
-      sound.play();
+    function init() {
+      BooksService.getBook($stateParams.bookId)
+        .then(function(book) {
+          vm.book = book;
+        });
     }
-    playing = !playing;
-  }
+  //vm.book = resBook;
 }]);
