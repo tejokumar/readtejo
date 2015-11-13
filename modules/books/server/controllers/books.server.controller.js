@@ -9,6 +9,7 @@ exports.createBook = createBook;
 exports.getBooks = getBooks;
 exports.bookById = bookById;
 exports.getBook = getBook;
+exports.getAudio = getAudio;
 /*
 exports.bookById = bookById;
 exports.getBook = getBook;
@@ -114,6 +115,14 @@ function getBooks(req, res) {
     });
 }
 
+function getAudio(req, res) {
+  if (!req.secretKey || !req.book) {
+    res.status(400).send('Book not available');
+    return;
+  }
+  var audioPath = booksService.getAudioPathForBook(req.secretKey, req.book._id);
+  res.download(audioPath);
+}
 function getBook(req, res) {
   res.json(req.book);
 }

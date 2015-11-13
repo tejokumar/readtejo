@@ -36,13 +36,13 @@ angular.module('books').factory('BooksService', ['Upload', '$q', '$resource', 'C
       if (!CustomerService.getSecretKey()) {
         defer.reject('No Application Key');
       } else {
-        var booksResource = $resource(getUrl(CustomerService.getSecretKey()));
+        var booksResource = $resource(getUrl(CustomerService.getSecretKey()) + '/:bookId');
         defer.resolve(booksResource.get({ bookId: bookId }).$promise);
       }
       return defer.promise;  
     }
     function getUrl(key){
-      return 'api/' + key + '/books/:bookId';
+      return 'api/' + key + '/books';
     }
     return {
       createBook: createBook,

@@ -34,4 +34,16 @@
 			{{playerCtrl.book.category}}
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-2">
+			<a href="#" ng-click="playerCtrl.play()">
+				<img src="modules/player/client/img/play64x64.png">
+			</a>
+			<a href="#" ng-click="playerCtrl.pause()">
+				<img src="modules/player/client/img/pause64x64.png">
+			</a>
+		</div>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-2">Current Time: {{playerCtrl.currentPlayTime}}</div>
+	</div>
 </section>

@@ -90,23 +90,14 @@ function getBooks() {
   });
   return defer.promise;
 }
-function getAudioPathForBook(bookId) {
-  var defer = Q.defer();
-  var dirPath = path.resolve('.') + '/bookFiles/' + bookId + '/';
-  fs.readdir(dirPath, function (err, files) {
-    if (err) {
-      defer.reject(err);
-    } else {
-      defer.resolve(dirPath + _.first(files));
-    }
-  });
-  return defer.promise;
+function getAudioPathForBook(secretKey, bookId) {
+  return path.resolve('.') + '/bookFiles/' + secretKey + '_'+bookId + '.ogg';
 }
 
 function uploadFile(file, key, bookId) {
   var defer = Q.defer();
   var dirName = path.resolve('.') + '/bookFiles/';
-  var newPath = dirName + key + '_' + bookId + '_' + file.originalname;
+  var newPath = dirName + key + '_' + bookId + '.ogg';
   fs.writeFile(newPath, file.buffer, function (err) {
     if (err) {
       defer.reject(err);
