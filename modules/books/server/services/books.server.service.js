@@ -1,6 +1,6 @@
 'use strict';
 
-var Q = require('Q'),
+var Q = require('q'),
   _ = require('lodash'),
   fs = require('fs'),
   probe = require('node-ffprobe'),
