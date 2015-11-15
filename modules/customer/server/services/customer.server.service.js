@@ -4,7 +4,7 @@ exports.createApplication = createApplication;
 exports.getApplications = getApplications;
 exports.getApplicationForKey = getApplicationForKey;
 
-var Q = require('Q'),
+var Q = require('q'),
   _ = require('lodash'),
   uuid = require('node-uuid'),
   mongoose = require('mongoose'),
