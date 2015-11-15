@@ -1,14 +1,13 @@
 {
-  "name": "meanjs",
+  "name": "readtejo",
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
-  "version": "0.4.1",
-  "meanjs-version": "0.4.1",
+  "version": "0.1",
   "private": false,
-  "author": "https://github.com/meanjs/mean/graphs/contributors",
+  "author": "Tejo Kumar",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/meanjs/mean.git"
+    "url": "https://github.com/tejokumar/readtejo.git"
   },
   "engines": {
     "node": ">=0.10.28",
