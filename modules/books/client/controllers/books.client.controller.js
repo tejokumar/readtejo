@@ -34,9 +34,14 @@ function BooksController($state, CustomerService, BooksService) {
       author: vm.newBook.author,
       category: vm.newBook.category
     };
-    BooksService.createBook(bookObject)
-      .then(function() {
-        $state.go('books.list');
-      });
+    var createBookPromise;
+    if(vm.isPublic === true) {
+      createBookPromise = BooksService.createPublicBook(bookObject)
+    } else {
+      createBookPromise = BooksService.createBook(bookObject);
+    }
+    createBookPromise.then(function() {
+      $state.go('books.list');
+    });
   }
 }

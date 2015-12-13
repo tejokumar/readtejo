@@ -5,6 +5,8 @@ var probe = require('node-ffprobe');
 var booksService = require('../services/books.server.service.js');
 
 //exports.upload = upload;
+exports.createPublicBook = createPublicBook;
+exports.getPublicBooks = getPublicBooks;
 exports.createBook = createBook;
 exports.getBooks = getBooks;
 exports.bookById = bookById;
@@ -81,9 +83,19 @@ function profileByBook(req, res, next, id) {
         next();
       });
   }
-  
+
 }
 */
+function createPublicBook(req, res) {
+  req.hasKeyAccess = true;
+  req.secretKey = 'ALL';
+  req.user = { _id:'PUBLICUSER' };
+  createBook(req,res);
+}
+function getPublicBooks(req, res) {
+  req.secretKey = 'ALL';
+  getBooks(req, res);
+}
 function createBook(req, res) {
   if (req.hasKeyAccess !== true) {
     res.status(401).send('No access to key');

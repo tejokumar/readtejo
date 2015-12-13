@@ -2,7 +2,11 @@
   <div ng-hide="booksCtrl.hasSecretKey === true">
     There is no secret key. <a ui-sref="customer">Create secret key </a>before creating books.
   </div>
-  <div ng-hide="booksCtrl.hasSecretKey !== true">
+  <div>
+    <label for="public">Create Public Book:</label>
+    <input class="form-control" type="checkbox" ng-model="booksCtrl.isPublic" id="public">
+  </div>
+  <div ng-show="booksCtrl.hasSecretKey === true || booksCtrl.isPublic === true">
   	<div class="form-group">
         <label for="title">Title:</label>
         <input type="text" class="form-control" id="title" ng-model="booksCtrl.newBook.title">

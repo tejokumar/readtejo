@@ -10,7 +10,9 @@ module.exports = function (app) {
     .get(booksController.getBook);
   app.route('/api/:secretKey/play/:bookId')
     .get(booksController.getAudio);
-  
+  app.route('/api/books')
+    .post(booksController.createPublicBook)
+    .get(booksController.getPublicBooks);
   app.param('secretKey', customerController.hasKeyAccess);
   app.param('bookId', booksController.bookById);
 };
